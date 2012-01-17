@@ -27,7 +27,6 @@ module Mongoid::TaggableWithContext::AggregationStrategy
       def tags_with_weight_for(context, conditions={})
         aggregation_database_collection_for(context).find({:value => {"$gt" => 0 }}).sort(_id: 1).to_a.map{ |t| [t["_id"], t["value"].to_i] }
       end
-      
     end
     
     protected

@@ -66,6 +66,7 @@ module Mongoid::TaggableWithContext::AggregationStrategy
     end
     
     protected
+
     
     def update_tags_aggregation(context_array_field, old_tags=[], new_tags=[])
       context = context_array_to_context_hash[context_array_field]

@@ -304,6 +304,10 @@ describe Mongoid::TaggableWithContext do
           klass.artists.should == %w[aaron andy gory grant greg jeff mandy]
         end
 
+        it "should retrieve the list of all tags filtered by a criteria" do
+          klass.tags(:criteria  => {:_id => /^s/}).should == %w[shoe strip]
+        end
+
         it "should retrieve a list of tags with weight" do
           klass.tags_with_weight.should == [
             ['ant', 1],
@@ -322,6 +326,13 @@ describe Mongoid::TaggableWithContext do
             ['greg', 2],
             ['jeff', 1],
             ['mandy', 2]
+          ]
+        end
+
+        it "should retrieve a list of tags with wieght filtered by a criteria" do
+          klass.tags_with_weight(:criteria  => {:_id  => /^s/}).should == [
+            ['shoe', 1],
+            ['strip', 2]
           ]
         end
       end
